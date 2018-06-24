@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import logging
 from linkedlists.linkedlist import Node
+from linkedlists.linkedlist import LinkedList
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -26,24 +27,19 @@ class TestNode(object):
 
 class TestLinkedList(object):
 
-    def _create_sample_linkedlist(self):
-        """Create a sample linkedlist of size four and return its head."""
-        n1 = Node(10)
-        n2 = Node(20)
-        n1.next = n2
+    def _get_sample_linkedlist(self, size = 4):
+        """Create a sample linkedlist and return the linkedlist obj"""
+        ll = LinkedList()
 
-        n3 = Node(30)
-        n2.next = n3
+        for item in range(size):
+            ll.push(item)
+        
+        return ll
 
-        n4 = Node(40)
-        n3.next = n4
-
-        return n1
-
-    def test_one(self):
+    def test_one(self, size = 4):
         """Testing traversing a linkedlist."""
-        head = self._create_sample_linkedlist()
-        cur = head
+        ll = self._get_sample_linkedlist(size)
+        cur = ll.head
         count = 0
         
         while cur:
@@ -53,18 +49,21 @@ class TestLinkedList(object):
 
         assert(count == 4)
 
-    def test_two(self):
+    def test_two(self, data = 20):
         """Testing inserting node at the head."""
-        head = self._create_sample_linkedlist()
+        ll = self._get_sample_linkedlist()
+        ll.push(data, 0)
+        
+        logging.debug("Data is {0}".format(ll.head.data))
+        assert(ll.head.data == data)
 
-        node = Node(100)
-        node.next = head
-        head = node
+    def test_three(self, size = 4):
+        """Testing get on linkedlist."""
+        ll = self._get_sample_linkedlist(size)
+        assert(ll.get(index = 1).data == 1)
 
-        assert(head.data == 100)
-        assert(head.next.data == 10)
-
-        cur = head
-        while cur:
-            logging.debug("Data is {0}".format(cur.data))
-            cur = cur.next
+    def test_four(self, index = 2, data = 50):
+        """Testing inseting node at nth position."""
+        ll = self._get_sample_linkedlist(size = 10)
+        ll.push(data, index)
+        assert(ll.get(index).data == data)
