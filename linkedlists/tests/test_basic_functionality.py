@@ -67,3 +67,33 @@ class TestLinkedList(object):
         ll = self._get_sample_linkedlist(size = 10)
         ll.push(data, index)
         assert(ll.get(index).data == data)
+
+    def test_five(self):
+        """Testing deleting head node."""
+        ll = self._get_sample_linkedlist()
+        logging.debug("Data is {0}".format(ll.head.data))
+
+        ll.pop(0)
+        logging.debug("Data is {0}".format(ll.head.data))
+        assert(ll.head.data == 1)
+
+    def test_six(self):
+        """Testing deleting the last node."""
+        ll = self._get_sample_linkedlist()
+        last = ll.length() - 1
+        logging.debug("Data is {0}".format(ll.get(last).data))
+
+        ll.pop(last)
+
+        last = ll.length() - 1
+        logging.debug("Data is {0}".format(ll.get(last).data))
+        assert(ll.get(last).data == 2)
+
+    def test_seven(self, index = 2):
+        """Testing deleting a nth node."""
+        ll = self._get_sample_linkedlist()
+        logging.debug("Data is {0}".format(ll.get(index).data))
+
+        ll.pop(index)
+        logging.debug("Data is {0}".format(ll.get(index).data))
+        assert(ll.get(index).data == 3)

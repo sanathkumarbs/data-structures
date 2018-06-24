@@ -73,4 +73,26 @@ class LinkedList(object):
                 cur.next = node
             else:
                 self.head = node
+
+    def pop(self, index = None):
+        """Pop a node from the linkedlist."""
+        if index is not None:
+            if index == 0 and self.head:
+                self.head = self.head.next
+            elif index > 0 and index < self.length() and self.head:
+                cur = self.head
+
+                for _ in range(0, index - 1):
+                    cur = cur.next
+                
+                cur.next = cur.next.next
+            else:
+                raise KeyError("Invalid index. Expected {0} to {1}".format(0, self.length()))
+        else:
+            cur = self.head
+            
+            while cur.next.next is not None:
+                cur = cur.next
+            
+            cur.next = None
     
