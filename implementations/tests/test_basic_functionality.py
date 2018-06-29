@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 """Unit tests for linkedlists implementation."""
 import logging
-from linkedlists.linkedlist import Node
-from linkedlists.linkedlist import LinkedList, DoublyLinkedList
+from ..lib.linkedlist import Node, LinkedList, DoublyLinkedList
 
 logging.basicConfig(level=logging.DEBUG)
 
