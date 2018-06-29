@@ -241,7 +241,7 @@ class DoublyLinkedList(LinkedList):
                 # create head node
                 self.head = doublenode
 
-    def pop(self, index=Node):
+    def pop(self, index=None):
         """Pop a node from the linkedlist.
 
         Args:
