@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Stacks Implementation."""
 
-from linkedlist import DoublyLinkedList
+from linkedlist import LinkedList
 
 class ArrayStack(object):
     """Implementation of Stacks using Arrays."""
@@ -38,8 +38,7 @@ class LinkedListStack(object):
 
     def __init__(self):
         """Initialize the Stack."""
-        self.stack = DoublyLinkedList()
-        self.topnode = self.stack.head
+        self.stack = LinkedList()
 
     @property
     def isempty(self):
@@ -53,20 +52,14 @@ class LinkedListStack(object):
         """Return the top item in the stack."""
         if self.isempty:
             return None
-        return self.topnode.data
+        return self.stack.head.data
 
     def push(self, item):
         """Push an item at the top of stack."""
-        self.stack.push(item)
-        
-        if self.topnode:
-            self.topnode = self.topnode.next
-        else:
-            self.topnode = self.stack.head
+        self.stack.push(item, index=0)
 
     def pop(self):
         """Pop an item at the top of stack."""
-        self.stack.pop()
-        self.topnode = self.topnode.prev
+        self.stack.pop(index=0)
 
 
